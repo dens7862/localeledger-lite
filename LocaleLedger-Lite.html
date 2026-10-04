@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LocaleLedger — Free Game Localisation CSV Checker</title><meta name="description" content="Free local CSV checks for missing game translations, duplicate keys and broken placeholders. Pro adds source-change comparisons, reports and pseudolocalisation."><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%226%22%20fill%3D%22%23102539%22/%3E%3Cpath%20d%3D%22M8%207v18h17v-5H13V7z%22%20fill%3D%22%23b6f373%22/%3E%3C/svg%3E"><style>:root{--ink:#142539;--muted:#526579;--line:#d5dfe7;--paper:#f0f4f8;--navy:#102539;--green:#b6f373;--danger:#b52732;--warn:#8b5e00;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;font:16px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--paper);color-scheme:light}
+*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}button,a,input,select,textarea,summary{outline-offset:4px}button,summary{cursor:pointer}a{color:inherit}button{border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink);padding:9px 14px;font-weight:650}button:hover{background:#edf3f8}button.primary{background:var(--green);border-color:var(--green);color:#142900}button:disabled{opacity:.5;cursor:default}header{background:var(--navy);color:white;padding:22px 4vw;display:flex;align-items:center;justify-content:space-between;gap:16px}header .wordmark{font-size:23px;font-weight:750;letter-spacing:-.6px;display:flex;align-items:center;gap:12px}.mark{width:34px;height:34px;display:grid;place-items:center;background:var(--green);color:var(--navy);border-radius:6px;font:700 19px var(--mono)}.edition{font:12px var(--mono);letter-spacing:1.5px;border:1px solid #6a8094;padding:4px 8px;border-radius:3px;color:#d6e9fa}header nav{display:flex;gap:20px;align-items:center;font-size:14px}header nav a{text-decoration:none}main{max-width:1480px;margin:auto;padding:28px 4vw 40px}.intro{display:flex;align-items:flex-start;justify-content:space-between;gap:25px;margin-bottom:24px}.intro h1{font-size:31px;line-height:1.2;margin:0 0 8px;letter-spacing:-.8px}.intro p{margin:0;color:var(--muted);max-width:720px}.privacy{font:13px var(--mono);padding:8px 0;color:var(--muted)}.workspace{display:grid;grid-template-columns:minmax(310px,380px) minmax(0,1fr);gap:24px;align-items:start}.panel{border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden}.panel-title{display:flex;align-items:center;justify-content:space-between;padding:17px 20px;border-bottom:1px solid var(--line)}h2{margin:0;font-size:18px}h3{font-size:18px;margin:0 0 8px}.step{font:12px var(--mono);color:var(--muted);letter-spacing:1px}.body{padding:20px}.small{font-size:14px;color:var(--muted)}.small p{margin:6px 0}.stack{display:grid;gap:14px}.field{display:grid;gap:6px;font-size:14px;font-weight:600}.field select,.field input,textarea{border:1px solid var(--line);border-radius:5px;padding:8px;background:#fafcff;color:var(--ink);min-width:0;width:100%}.columns{display:grid;grid-template-columns:1fr 1fr;gap:12px}textarea{font:13px/1.55 var(--mono);height:172px;resize:vertical;white-space:pre;min-height:100px}.actions{display:flex;flex-wrap:wrap;gap:8px}.file-pick{display:block;border:1px dashed #8397a9;text-align:center;border-radius:5px;padding:13px;cursor:pointer;font-size:14px;font-weight:650;background:#f7fafc}.file-pick input{width:100%;margin-top:8px;font-size:12px}.targets{display:flex;gap:8px;flex-wrap:wrap}.targets label{padding:5px 9px;border:1px solid var(--line);border-radius:4px;font:14px var(--mono);display:flex;align-items:center;gap:5px}details{font-size:14px}details .stack{margin-top:14px}summary{font-weight:650}.full{width:100%}.status{font:13px var(--mono);color:var(--muted)}.banner{padding:12px 16px;border-radius:5px;background:#fff2f2;border:1px solid #e8bcc0;margin-bottom:16px;color:#84212c;display:none;font-size:14px}.banner.visible{display:block}.metrics{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}.metric{padding:21px 20px;border-right:1px solid var(--line)}.metric:last-child{border:0}.metric b{display:block;font:650 30px/1.1 var(--mono);letter-spacing:-1px}.metric span{font-size:13px;color:var(--muted)}.metric.error b{color:var(--danger)}.metric.warning b{color:var(--warn)}.toolbar{display:flex;gap:10px;flex-wrap:wrap;padding:14px 20px;border-bottom:1px solid var(--line);align-items:center}.toolbar input{flex:1;min-width:140px;border:1px solid var(--line);border-radius:5px;padding:8px;font-size:14px}.toolbar select{padding:8px;border:1px solid var(--line);border-radius:5px;font-size:14px}.result-list{min-height:350px;max-height:710px;overflow:auto}.issue{padding:17px 20px;border-bottom:1px solid var(--line)}.issue:last-child{border:0}.issue-top{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.badge{font:11px var(--mono);letter-spacing:.6px;text-transform:uppercase;padding:3px 6px;border-radius:3px;background:#ffe8ea;color:#9b2430}.badge.warning{background:#fff1ca;color:#775100}.issue-key{font:600 14px var(--mono);overflow-wrap:anywhere}.locale{font:13px var(--mono);color:var(--muted)}.issue p{margin:7px 0 9px;font-size:14px}.texts{display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:13px}.texts>div{border:1px solid #e1e8ee;background:#f8fafc;padding:9px 10px;border-radius:4px;overflow-wrap:anywhere;white-space:pre-wrap}.texts small{display:block;color:var(--muted);font:11px var(--mono);margin-bottom:4px}.empty{padding:60px 24px;text-align:center;color:var(--muted)}.empty strong{display:block;color:var(--ink);font-size:20px;margin-bottom:8px}.result-foot{padding:14px 20px;background:#f7fafc;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}.diff-title{padding:14px 20px;background:#eaf3fc;border-top:1px solid var(--line);font-weight:650}.diff-list .issue{background:#f8fbff}.offer{margin-top:30px;border:1px solid #314b65;background:var(--navy);color:#fff;border-radius:9px;padding:25px 28px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}.offer h2{font-size:22px;margin:0 0 6px}.offer p{margin:0;color:#cedceb;max-width:780px}.price{font:700 32px var(--mono);color:var(--green);white-space:nowrap}.price small{font:13px system-ui;color:#cedceb;display:block;margin-top:5px}.info{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:32px;padding:0 4px}.info p,.info li{color:var(--muted);font-size:14px}.info ul{padding-left:18px}.info details{margin-bottom:10px}.info details p{margin:8px 0}.footer{margin-top:32px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;justify-content:space-between;gap:12px}code{font-family:var(--mono);font-size:.88em} .clear-link{background:transparent;border:0;padding:2px 0;color:var(--muted);font-size:13px}.checkline{display:flex;gap:8px;align-items:center;font-size:14px}.no-wrap{white-space:nowrap}
+@media(max-width:950px){.workspace{grid-template-columns:310px minmax(0,1fr)}.metric{padding:15px 12px}.metric b{font-size:25px}.texts{grid-template-columns:1fr}.intro{display:block}.privacy{margin-top:7px}.intro h1{font-size:27px}}
+@media(max-width:740px){header{padding:18px 20px}header nav{gap:10px}header nav a.download{display:none}main{padding:23px 18px}.workspace{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.metric:nth-child(2){border-right:0}.metric:nth-child(-n+2){border-bottom:1px solid var(--line)}.offer,.info{grid-template-columns:1fr}.offer{padding:23px}.result-list{max-height:620px}.intro h1{font-size:26px}.footer{display:block}.edition{font-size:10px}}
+@media(prefers-reduced-motion:no-preference){button{transition:background .15s}}
+.buy-button{display:block;margin-top:16px;padding:12px 16px;background:var(--green);color:#142900;font:650 16px/1.4 system-ui;text-decoration:none;text-align:center;border-radius:6px;white-space:normal}.resources{margin-top:22px;padding:20px;background:#fff;border:1px solid var(--line);border-radius:9px}.resources p{margin:8px 0;color:var(--muted)}.resources a{font-weight:650}</style><link rel="canonical" href="https://localeledger-qa.mza-als.chatgpt.site/"><meta name="robots" content="index,follow"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"LocaleLedger Lite","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","url":"https://localeledger-qa.mza-als.chatgpt.site/","description":"Free, local CSV localisation checks for missing game translations, duplicate keys and placeholder mismatches.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script></head>
+<body><header><div class="wordmark"><span class="mark" aria-hidden="true">L</span>LocaleLedger<span class="edition">FREE</span></div><nav><a href="#guide">Guide</a><a href="https://localeledger-qa.mza-als.chatgpt.site/release-checklist.html">Release checklist</a><a href="#pro">Pro</a></nav></header>
+<main><div class="intro"><div><h1>Translation checks. Before release.</h1><p>Catch missing translations and broken placeholders before you ship.</p></div><div class="privacy">LOCAL PROCESSING / NO SIGN-UP</div></div>
+<div id="message" class="banner" role="alert"></div><div class="workspace"><section class="panel"><div class="panel-title"><h2>Translation table</h2><span class="step">01 / INPUT</span></div><div class="body stack">
+<label class="file-pick">Open CSV / TSV<input id="currentFile" type="file" accept=".csv,.tsv"></label>
+<label class="field">Or paste your table<textarea id="current" spellcheck="false" aria-label="Current translation table"></textarea></label><div class="actions"><button id="sample">Use sample</button><button id="sampleDownload">Sample CSV</button><button id="clear" class="clear-link">Clear files</button></div>
+<div class="columns"><label class="field">Key column<select id="key"></select></label><label class="field">Source language<select id="source"></select></label></div><div><div class="field" style="margin-bottom:6px">Target languages</div><div class="targets" id="targets"></div></div>
+<details><summary>Review settings</summary><div class="stack"><div class="columns"><label class="field">Length ratio<input id="ratio" type="number" min="1" max="10" step=".1" value="1.6"></label><label class="field">Character limit<input id="max" type="number" min="0" max="100000" step="1" value="0"></label></div><label class="checkline"><input id="markup" type="checkbox" checked> Compare recognised markup tokens</label><p class="small">0 disables the character limit. Length flags prompt layout review; they do not measure pixel width.</p></div></details>
+<button class="primary full" id="check">Run checks</button><div id="status" class="status" aria-live="polite"></div><p class="small" style="margin:0">Free: up to 300 rows · 10 MiB · UTF-8</p></div></section>
+<section class="panel"><div class="panel-title"><h2>Findings</h2><span class="step">02 / REVIEW</span></div><div class="metrics" aria-live="polite"><div class="metric"><b id="rowsCount">—</b><span>rows</span></div><div class="metric error"><b id="errorsCount">—</b><span>errors</span></div><div class="metric warning"><b id="warningsCount">—</b><span>warnings</span></div><div class="metric"><b id="missingCount">—</b><span>missing targets</span></div></div><div class="toolbar"><input id="search" aria-label="Filter findings" placeholder="Filter by key, language or issue"><select id="severity" aria-label="Severity filter"><option value="all">All findings</option><option value="error">Errors</option><option value="warning">Warnings</option></select><span id="matches" class="small"></span></div><div class="result-list" id="results"></div><div class="result-foot">Structural review only. Check translation quality, fonts, plural rules and layout in your game.</div></section></div>
+<section class="offer" id="pro"><div><h2>Move from checks to release review.</h2><p>Pro adds baseline comparisons, possibly stale translation flags, CSV and JSON reports, a pseudolocalisation export, locale-root JSON input, and a command-line checker for build pipelines.</p><p style="margin-top:10px;font-size:14px">One download. Runs locally. No subscription. Applicable taxes may be added at checkout.</p></div><div class="price">$12 <small>USD · one-time purchase</small><a class="buy-button" href="https://densify6.gumroad.com/l/localeledger-pro">Buy LocaleLedger Pro</a></div></section><section class="resources"><h2>Free release starter kit</h2><p>A blank wide CSV template, a synthetic example with deliberate QA issues, and a short release checklist. Start with files you can safely share.</p><p><a href="https://localeledger-qa.mza-als.chatgpt.site/localeledger-release-starter.zip" download>Download the free starter kit</a> · <a href="https://localeledger-qa.mza-als.chatgpt.site/release-checklist.html">Read the localisation release checklist</a></p></section><section class="info" id="guide"><div><h3>Use your existing table</h3><p>Use a header row with a key column, a source language and target languages, such as <code>key,en,fr,de</code>. Comma, semicolon and tab delimiters are detected. Quoted commas, doubled quotes and multiline text are supported.</p><p>Columns named <code>note</code>, <code>comment</code>, <code>context</code>, <code>description</code>, <code>max_length</code> or <code>character_limit</code> are excluded from target selection by default. Choose columns manually when needed.</p><p>Key names are case-sensitive. Keys are not trimmed; fix unintended spaces in your source table. Record numbers count CSV records, including the header, rather than physical lines.</p><p>The free checker does not export reports, compare releases or import JSON. You can download it and use it offline.</p></div><div><h3>Know what is checked</h3><details open><summary>Placeholders and markup</summary><p>Compares literal token signatures for <code>{player}</code>, <code>{0}</code>, <code>${name}</code> and printf-style formats. Named and numbered tokens may move; unnumbered printf tokens must keep their order. Escaped double braces are ignored. Token formatting must remain identical. Recognised HTML-style and selected BBCode tokens are compared as a review warning.</p></details><details><summary>Supported scope</summary><p>ICU plural/select and nested brace formats are flagged for specialised review; their placeholder comparison is skipped. This is not an engine importer, a translation service, an HTML validator or a complete message-format parser. Intentional source copies and length changes may produce review warnings.</p></details><details><summary>Privacy and files</summary><p>Your table is processed in this tab and stays in memory. No analytics, cookies or browser storage are used by this app. Clear files or close the tab to discard it. Exported reports contain source and target text. Keep confidential reports private. The hosted page is served normally by its hosting provider; the downloaded checker runs without network requests.</p></details></div></section>
+<footer class="footer"><span>LocaleLedger 1.0.0 · Original software, built with AI assistance.</span><span>Desktop Chromium recommended · no engine affiliation</span></footer></main><script>'use strict';
+(function(root, factory) {
+  const api = factory();
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  else root.LL = api;
+})(typeof globalThis !== 'undefined' ? globalThis : this, function() {
+  const VERSION = '1.0.0';
+  const MAX_BYTES = 10 * 1024 * 1024;
+  const MAX_ROWS = 25000;
+  function sizeCheck(text) {
+    if (new TextEncoder().encode(text).length > MAX_BYTES) throw Error('File exceeds the 10 MiB limit. Split it into smaller tables.');
+  }
+  function delimiter(text) {
+    const counts = {',':0, ';':0, '\t':0}; let quoted = false;
+    for (let i=0; i<text.length; i++) {
+      const c=text[i];
+      if(c==='"') { if(quoted && text[i+1]==='"') i++; else quoted=!quoted; }
+      else if(!quoted && (c==='\n'||c==='\r')) break;
+      else if(!quoted && Object.hasOwn(counts,c)) counts[c]++;
+    }
+    return Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];
+  }
+  function parseCSV(input, sep) {
+    sizeCheck(input); const text=input.replace(/^\uFEFF/,''); sep=sep||delimiter(text);
+    if(![',',';','\t'].includes(sep)) throw Error('Choose comma, semicolon or tab as delimiter.');
+    const records=[]; let row=[], value='', quoted=false, ended=false;
+    function finishField(){row.push(value);value='';ended=false;}
+    function finishRow(){finishField();records.push(row);row=[];if(records.length>MAX_ROWS+1)throw Error('Table exceeds 25,000 data rows.');}
+    for(let i=0;i<text.length;i++) {
+      const c=text[i];
+      if(quoted) {
+        if(c==='"') {if(text[i+1]==='"'){value+='"';i++;}else{quoted=false;ended=true;}}
+        else value+=c;
+      } else if(c===sep) finishField();
+      else if(c==='\n'||c==='\r'){if(c==='\r'&&text[i+1]==='\n')i++;finishRow();}
+      else if(c==='"'){if(value!==''||ended)throw Error('Unexpected quote in CSV record '+(records.length+1)+'.');quoted=true;}
+      else {if(ended)throw Error('Text after closing quote in CSV record '+(records.length+1)+'.');value+=c;}
+    }
+    if(quoted)throw Error('Unclosed quote in CSV record '+(records.length+1)+'.');
+    if(value!==''||row.length||ended)finishRow();
+    if(!records.length)throw Error('The table is empty.');
+    const headers=records.shift().map(x=>x.trim());
+    if(headers.length<2)throw Error('A table needs a key column and at least one language column.');
+    if(headers.some(x=>!x))throw Error('Every column must have a non-empty header.');
+    if(new Set(headers).size!==headers.length)throw Error('Duplicate column headers are ambiguous. Give every column a unique name.');
+    const rows=[];
+    records.forEach((cells,index)=>{
+      if(cells.every(x=>x===''))return;
+      if(cells.length!==headers.length)throw Error('CSV record '+(index+2)+' has '+cells.length+' fields; expected '+headers.length+'.');
+      const values=Object.create(null);headers.forEach((h,i)=>values[h]=cells[i]);rows.push({row:index+2,values});
+    });
+    return {headers,rows,delimiter:sep,format:'csv'};
+  }
+  // Parse JSON without silently discarding duplicate properties.
+  function parseJSONStrict(input) {
+    sizeCheck(input);const text=input.replace(/^\uFEFF/,'');let i=0;
+    const white=()=>{while(/[ \t\r\n]/.test(text[i]||'')&&i<text.length)i++;};
+    const fail=msg=>{throw Error(msg+' at character '+(i+1)+'.');};
+    function string(){const start=i++;while(i<text.length){if(text[i]==='\\'){i+=2;continue;}if(text[i++]==='"'){try{return JSON.parse(text.slice(start,i));}catch{fail('Invalid JSON string');}}}fail('Unclosed JSON string');}
+    function value(depth=0){
+      if(depth>60)fail('JSON nesting exceeds 60 levels');white();const c=text[i];
+      if(c==='"')return string();
+      if(c==='{'){
+        i++;const obj=Object.create(null);white();if(text[i]==='}'){i++;return obj;}
+        while(i<text.length){white();if(text[i]!=='"')fail('Expected a property name');const key=string();
+          if(Object.hasOwn(obj,key))fail('Duplicate JSON property '+JSON.stringify(key));
+          white();if(text[i++]!==':')fail('Expected a colon');obj[key]=value(depth+1);white();
+          if(text[i]==='}'){i++;return obj;}if(text[i++]!==',')fail('Expected a comma');
+        }fail('Unclosed JSON object');
+      }
+      if(c==='['){i++;const arr=[];white();if(text[i]===']'){i++;return arr;}while(i<text.length){arr.push(value(depth+1));white();if(text[i]===']'){i++;return arr;}if(text[i++]!==',')fail('Expected a comma');}fail('Unclosed JSON array');}
+      for(const [token,result] of [['true',true],['false',false],['null',null]])if(text.slice(i,i+token.length)===token){i+=token.length;return result;}
+      const m=text.slice(i).match(/^-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?/);
+      if(m){i+=m[0].length;return Number(m[0]);}fail('Invalid JSON value');
+    }
+    const result=value();white();if(i!==text.length)fail('Unexpected trailing content');return result;
+  }
+  function parseLocaleJSON(input) {
+    const data=parseJSONStrict(input);
+    if(!data||Array.isArray(data)||typeof data!=='object')throw Error('JSON must be a locale-root object: {"en":{"key":"Text"},"fr":{"key":"Texte"}}.');
+    const locales=Object.keys(data);if(locales.length<1)throw Error('JSON has no locales.');
+    if(locales.includes('key'))throw Error('The locale name "key" is reserved. Rename it before importing.');
+    const tables=Object.create(null);const keys=new Set();
+    locales.forEach(locale=>{
+      const table=Object.create(null);tables[locale]=table;
+      if(!data[locale]||Array.isArray(data[locale])||typeof data[locale]!=='object')throw Error('Each top-level JSON property must contain a language object.');
+      function flatten(obj,path){for(const [name,v] of Object.entries(obj)){
+        if(!name)throw Error('JSON contains an empty key segment.');
+        const key=path?path+'.'+name:name;
+        if(typeof v==='string'){if(Object.hasOwn(table,key))throw Error('Flattened key collision: '+key);table[key]=v;keys.add(key);}
+        else if(v&&typeof v==='object'&&!Array.isArray(v))flatten(v,key);
+        else throw Error('Only string leaves and nested objects are supported. Invalid value at '+locale+'.'+key+'.');
+      }}flatten(data[locale],'');
+    });
+    if(keys.size>MAX_ROWS)throw Error('JSON exceeds 25,000 keys.');
+    const rows=Array.from(keys).map((key,index)=>{const values=Object.create(null);values.key=key;locales.forEach(l=>values[l]=tables[l][key]??'');return {row:index+2,values};});
+    return {headers:['key',...locales],rows,format:'json',delimiter:','};
+  }
+  function parse(input,format='csv',sep){return format==='json'?parseLocaleJSON(input):parseCSV(input,sep);}
+  const meta=/^(?:notes?|comments?|context|description|max_length|character_limit)$/i;
+  function configure(raw,options={}) {
+    const key=options.key||raw.headers[0];
+    const languages=raw.headers.filter(h=>h!==key&&!meta.test(h));
+    const source=options.source||(languages.includes('en')?'en':languages[0]);
+    const targets=options.targets??languages.filter(h=>h!==source);
+    if(!raw.headers.includes(key)||!source||!raw.headers.includes(source)||source===key)throw Error('Select different, valid key and source columns.');
+    if(!Array.isArray(targets)||new Set(targets).size!==targets.length||targets.some(t=>!raw.headers.includes(t)||t===source||t===key))throw Error('Target columns must be unique and different from the key and source columns.');
+    return {...raw,key,source,targets,rows:raw.rows.map(r=>({...r,key:r.values[key]}))};
+  }
+  function advanced(text){return /\{[^{}]*,\s*(?:plural|select|selectordinal)\s*,/.test(text)||/\{[^{}]+\{/.test(text);}
+  const tokenPattern=()=>/\{\{[^{}]+\}\}|\$\{[A-Za-z_][\w.]*\}|\{(?:[A-Za-z_][\w.]*|\d+)(?:,[+-]?\d+)?(?::[^{}]+)?\}|%%|%(?:\d+\$)?[-+#0 ]*(?:\d+|\*)?(?:\.(?:\d+|\*))?(?:hh|ll|[hlLzjt])?[diuoxXfFeEgGaAcsp]/g;
+  function placeholders(text) {
+    const named=[],ordered=[];
+    for(const m of text.matchAll(tokenPattern())){
+      const t=m[0];if(t==='%%'||t.startsWith('{{'))continue;
+      if(t.startsWith('%')&&!/^%\d+\$/.test(t))ordered.push(t);
+      else named.push(t);
+    }return {named:named.sort(),ordered};
+  }
+  function markup(text){return Array.from(text.matchAll(/<\/?[A-Za-z][^>]*>|\[\/?(?:b|i|u|s|color|font|size|url|wave|shake|rainbow|center|right|left|code)(?:=[^\]]*)?\]/g),m=>m[0]).sort();}
+  function visible(text){return text.replace(tokenPattern(),'').replace(/<[^>]*>/g,'');}
+  function check(ds,options={}) {
+    const issues=[],seen=new Set();const ratio=Number(options.ratio??1.6),max=Number(options.maxChars??0);
+    if(!Number.isFinite(ratio)||ratio<1||ratio>10||!Number.isInteger(max)||max<0||max>100000)throw Error('Expansion ratio must be 1–10; character limit must be a non-negative integer up to 100,000.');
+    const add=(r,locale,severity,code,message)=>issues.push({row:r.row,key:r.key,locale,severity,code,message,source:r.values[ds.source]??'',target:r.values[locale]??''});
+    let missing=0;
+    for(const r of ds.rows){
+      if(!r.key.trim())add(r,ds.key,'error','blank_key','Key is empty or whitespace only.');
+      else if(seen.has(r.key))add(r,ds.key,'error','duplicate_key','This key appears more than once.');
+      seen.add(r.key);
+      const src=r.values[ds.source];
+      if(!src.trim()){add(r,ds.source,'error','blank_source','Source text is empty.');continue;}
+      for(const locale of ds.targets){
+        const target=r.values[locale];
+        if(!target.trim()){missing++;add(r,locale,'error','missing_translation','Target text is empty.');continue;}
+        if(advanced(src)||advanced(target))add(r,locale,'warning','unsupported_format','Nested/ICU message format needs a specialised checker; placeholder comparison was skipped.');
+        else if(JSON.stringify(placeholders(src))!==JSON.stringify(placeholders(target)))add(r,locale,'error','placeholder_mismatch','Placeholder names, literal format tokens, counts or unnumbered printf order differ.');
+        if(options.markup!==false&&JSON.stringify(markup(src))!==JSON.stringify(markup(target)))add(r,locale,'warning','markup_difference','Recognised markup tokens differ. Review tags and attributes in the engine.');
+        if(target===src&&/[A-Za-z\u00C0-\u02FF]{3}/.test(src))add(r,locale,'warning','same_as_source','Target is identical to the source. This may be intentional.');
+        if(/^\s|\s$/.test(src)!==/^\s|\s$/.test(target)||src.match(/^\s*/)[0]!==target.match(/^\s*/)[0]||src.match(/\s*$/)[0]!==target.match(/\s*$/)[0])add(r,locale,'warning','edge_whitespace','Leading or trailing whitespace differs.');
+        const counts=s=>[(s.match(/\n/g)||[]).length,(s.match(/\t/g)||[]).length];
+        if(JSON.stringify(counts(src))!==JSON.stringify(counts(target)))add(r,locale,'warning','control_count','Actual newline or tab counts differ. Escaped backslash sequences are not checked.');
+        const n=Array.from(visible(src)).length,t=Array.from(visible(target)).length;
+        if(n>=5&&t>n*ratio)add(r,locale,'warning','length_expansion','Target has '+t+' visible code points versus '+n+' in the source; review layout.');
+        if(max&&Array.from(target).length>max)add(r,locale,'warning','character_limit','Target exceeds '+max+' Unicode code points. This is not a pixel-width measurement.');
+      }
+    }
+    return {version:VERSION,source:ds.source,targets:ds.targets,rows:ds.rows.length,checks:ds.rows.length*ds.targets.length,missing,errors:issues.filter(x=>x.severity==='error').length,warnings:issues.filter(x=>x.severity==='warning').length,issues};
+  }
+  function csvEncode(rows,safe=false,sep=',') {
+    return rows.map(row=>row.map(value=>{let s=String(value??'');if(safe&&/^[\s]*[=+@-]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';}).join(sep)).join('\r\n')+'\r\n';
+  }
+  function reportCSV(report){const cols=['severity','code','row','key','locale','message','source','target'];return csvEncode([cols,...report.issues.map(x=>cols.map(c=>x[c]))],true);}
+  return {VERSION,MAX_BYTES,MAX_ROWS,parseCSV,parseJSONStrict,parseLocaleJSON,parse,configure,advanced,tokenPattern,placeholders,check,csvEncode,reportCSV};
+});
+
+
+
+const PRO=false, SAMPLE="key,en,fr,de\nMENU_START,Start game,Lancer le jeu,Spiel starten\nWELCOME,\"Welcome, {player}!\",\"Bienvenue, {player}!\",Willkommen!\nGEMS,You have {count} gems,Vous avez {count} gemmes,Du hast {count} Edelsteine\nINVENTORY,Inventory,,Inventar\nHP,Health: %d / %d,Santé: %d,Gesundheit: %d / %d\nREADY,Ready,Ready,Bereit\nSHOP_TITLE,Item shop,Boutique,Boutique\nQUEST_NEW,Find the hidden key,Trouvez la clé cachée,Finde den versteckten Schlüssel\n", BASELINE="key,en,fr,de\nMENU_START,Start game,Lancer le jeu,Spiel starten\nWELCOME,\"Welcome, {player}!\",\"Bienvenue, {player}!\",Willkommen!\nGEMS,You have {count} gems,Vous avez {count} gemmes,Du hast {count} Edelsteine\nINVENTORY,Inventory,Inventaire,Inventar\nHP,Health: %d / %d,Santé: %d,Gesundheit: %d / %d\nREADY,Ready,Ready,Bereit\nSHOP_TITLE,Shop,Boutique,Boutique\nOLD_HELP,Help,Aide,Hilfe\n";
+const $=id=>document.getElementById(id);
+let raw=null,report=null,diffResult=null,headerSignature='';
+const textEl=(tag,text,cls)=>{const e=document.createElement(tag);e.textContent=text;if(cls)e.className=cls;return e;};
+function message(text){$('message').textContent=text;$('message').classList.toggle('visible',!!text);}
+function save(name,text,type='text/plain'){const blob=new Blob([text],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function dirty(){report=null;diffResult=null;message('');$('status').textContent='Inputs changed · run checks to update results';render();}
+function format(){const f=$('format')?.value;return f==='auto'?($('current').value.trim().startsWith('{')?'json':'csv'):(f||'csv');}
+function renderTargets(defaults){const targetBox=$('targets');targetBox.replaceChildren();raw.headers.filter(h=>h!==$('key').value&&h!==$('source').value).forEach(h=>{
+ const label=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.value=h;input.checked=defaults.includes(h);input.addEventListener('change',dirty);label.append(input,document.createTextNode(h));targetBox.append(label);
+});}
+function prepare(){
+ if(!PRO&&format()==='json')throw Error('JSON import is included in Pro. The free checker accepts CSV or TSV.');
+ raw=LL.parse($('current').value,format());
+ if(!PRO&&raw.rows.length>300)throw Error('The free checker accepts up to 300 rows. Split this file or use Pro for up to 25,000 rows.');
+ const sig=JSON.stringify(raw.headers);
+ if(sig!==headerSignature){
+   const defaults=LL.configure(raw);headerSignature=sig;
+   for(const [id,value] of [['key',defaults.key],['source',defaults.source]]){
+     $(id).replaceChildren(...raw.headers.map(h=>{const o=document.createElement('option');o.value=h;o.textContent=h;return o;}));$(id).value=value;
+   }renderTargets(defaults.targets);
+ }
+ return LL.configure(raw,{key:$('key').value,source:$('source').value,targets:Array.from($('targets').querySelectorAll('input:checked')).map(x=>x.value)});
+}
+function runCheck(){try{
+ const ds=prepare();if(!ds.targets.length)throw Error('Select at least one target language.');
+ report=LL.check(ds,{ratio:Number($('ratio').value),maxChars:Number($('max').value),markup:$('markup').checked});diffResult=null;
+ message('');$('status').textContent=ds.rows.length+' rows · '+ds.source+' → '+ds.targets.join(', ');render();return report;
+}catch(e){message(e.message);report=null;diffResult=null;render();return null;}}
+function render(){
+ $('rowsCount').textContent=report?.rows??'—';$('errorsCount').textContent=report?.errors??'—';$('warningsCount').textContent=report?.warnings??'—';$('missingCount').textContent=report?.missing??'—';
+ const list=$('results');list.replaceChildren();
+ const query=$('search').value.toLowerCase(),severity=$('severity').value;
+ const issues=(report?.issues||[]).filter(x=>(severity==='all'||x.severity===severity)&&[x.key,x.locale,x.code,x.message].join(' ').toLowerCase().includes(query));
+ $('matches').textContent=report?issues.length+' findings'+(issues.length>200?' · showing first 200':''):'';
+ if(!report){const empty=textEl('div','','empty');empty.append(textEl('strong','Run a local check'),textEl('div','Load a file or use the sample table to see findings.'));list.append(empty);}
+ else if(!issues.length){const empty=textEl('div','','empty');empty.append(textEl('strong',report.issues.length?'No matching findings':'No findings from these checks'),textEl('div',report.issues.length?'Try another filter.':'Test translation quality, fonts and layout in your game as well.'));list.append(empty);}
+ else for(const issue of issues.slice(0,200)){
+   const card=textEl('article','','issue'),top=textEl('div','','issue-top');top.append(textEl('span',issue.severity,'badge '+issue.severity),textEl('span',issue.key||'(blank key)','issue-key'),textEl('span',issue.locale+' · record '+issue.row,'locale'));
+   card.append(top,textEl('p',issue.message));const pair=textEl('div','','texts');
+   for(const [label,text] of [['SOURCE',issue.source],['TARGET',issue.target]]){const box=document.createElement('div');box.append(textEl('small',label),textEl('bdi',text||'(empty)'));pair.append(box);}card.append(pair);list.append(card);
+ }
+ if(PRO){for(const id of ['exportJSON','exportCSV','pseudo'])$(id).disabled=!report;
+ const box=$('diffResults');box.replaceChildren();box.hidden=!diffResult;
+ if(diffResult){box.append(textEl('div',`${diffResult.changed} source changes · ${diffResult.stale} possibly stale targets · ${diffResult.added} added · ${diffResult.removed} removed`,'diff-title'));
+ for(const change of diffResult.changes.slice(0,200)){const card=textEl('article','','issue');const top=textEl('div','','issue-top');top.append(textEl('span',change.status.replaceAll('_',' '),'badge warning'),textEl('span',change.key,'issue-key'),textEl('span',change.locale,'locale'));card.append(top,textEl('p',change.message));box.append(card);}if(diffResult.changes.length>200)box.append(textEl('p','Showing first 200 changes. Export the full report.','body small'));
+ }
+ $('exportDiff').disabled=!diffResult;
+ }
+}
+function loadSample(){headerSignature='';$('current').value=SAMPLE;if(PRO){$('baseline').value=BASELINE;$('format').value='auto';}$('search').value='';$('severity').value='all';runCheck();}
+function clearAll(){headerSignature='';raw=null;$('current').value='';if(PRO)$('baseline').value='';$('key').replaceChildren();$('source').replaceChildren();$('targets').replaceChildren();dirty();$('status').textContent='Files cleared · nothing is saved in this browser';}
+async function readFile(input,where){const file=input.files[0];if(!file)return;try{if(file.size>LL.MAX_BYTES)throw Error('File exceeds 10 MiB.');const bytes=await file.arrayBuffer();const text=new TextDecoder('utf-8',{fatal:true}).decode(bytes);$(where).value=text;dirty();if(where==='current'){headerSignature='';prepare();}$('status').textContent='Loaded '+file.name+' · run checks';}catch(e){message(e.message);}finally{input.value='';}}
+$('currentFile').addEventListener('change',e=>readFile(e.target,'current'));
+$('current').addEventListener('input',dirty);$('check').addEventListener('click',runCheck);$('sample').addEventListener('click',loadSample);$('clear').addEventListener('click',clearAll);
+for(const id of ['source','key'])$(id).addEventListener('change',()=>{dirty();try{if(raw){const defaults=LL.configure(raw,{key:$('key').value,source:$('source').value});renderTargets(defaults.targets);}}catch(e){message(e.message);}});
+for(const id of ['ratio','max','markup'])$(id).addEventListener('change',dirty);
+for(const id of ['search','severity'])$(id).addEventListener('input',render);
+$('sampleDownload').addEventListener('click',()=>save('localeledger-sample.csv',SAMPLE,'text/csv;charset=utf-8'));
+if(PRO){
+ $('baselineFile').addEventListener('change',e=>readFile(e.target,'baseline'));$('baseline').addEventListener('input',dirty);$('format').addEventListener('change',()=>{headerSignature='';dirty();});
+ $('compare').addEventListener('click',()=>{try{const ds=prepare();const text=$('baseline').value;if(!text.trim())throw Error('Load or paste a baseline table first.');const f=text.trim().startsWith('{')?'json':'csv';const baseRaw=LL.parse(text,f);const base=LL.configure(baseRaw,{key:ds.key,source:ds.source,targets:ds.targets.filter(t=>baseRaw.headers.includes(t))});diffResult=LLPro.diff(base,ds);message('');render();}catch(e){diffResult=null;message(e.message);render();}});
+ $('exportJSON').addEventListener('click',()=>report&&save('localeledger-issues.json',JSON.stringify(report,null,2),'application/json'));
+ $('exportCSV').addEventListener('click',()=>report&&save('localeledger-issues.csv',LL.reportCSV(report),'text/csv;charset=utf-8'));
+ $('exportDiff').addEventListener('click',()=>diffResult&&save('localeledger-release-diff.csv',LLPro.diffCSV(diffResult),'text/csv;charset=utf-8'));
+ $('pseudo').addEventListener('click',()=>{try{const ds=prepare();const result=LLPro.pseudoCSV(ds,35);save('localeledger-pseudo.csv',result.content,'text/csv;charset=utf-8');message(result.skipped?result.skipped+' unsupported message(s) were copied unchanged. Review before testing.':'');}catch(e){message(e.message);}});
+}
+if(document.modelContext?.registerTool){try{document.modelContext.registerTool({name:'check_localization_csv',title:'Check localisation CSV',description:'Replace the visible CSV input and run structural localisation checks locally; returns a summary. Input remains in memory only.',inputSchema:{type:'object',properties:{csv:{type:'string',maxLength:1000000}},required:['csv'],additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:true},execute(input){if(!input||typeof input.csv!=='string'||input.csv.length>1000000)throw Error('Supply CSV text up to 1,000,000 characters.');$('current').value=input.csv;headerSignature='';if(PRO)$('format').value='auto';const result=runCheck();if(!result)throw Error($('message').textContent);return {rows:result.rows,errors:result.errors,warnings:result.warnings,missing:result.missing};}});}catch{}}
+loadSample();
+</script></body></html>

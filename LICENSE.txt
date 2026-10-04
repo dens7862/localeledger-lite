@@ -1,0 +1,17 @@
+LocaleLedger Lite — unchanged-sharing permission
+
+The separate LocaleLedger Lite HTML may be used and shared unchanged for
+personal or commercial checking. That permission does not extend to
+redistribution of LocaleLedger Pro.
+
+The included synthetic CSV examples and README may be shared with the
+unchanged Lite checker. Input game strings and translations remain the
+property of their respective owners.
+
+The tool is supplied as-is, subject to applicable consumer rights that cannot
+be excluded. It cannot guarantee the absence of localisation errors. Keep
+backups and independently verify engine import, language quality and layout.
+Nothing here limits mandatory rights under applicable law.
+
+All included software, samples and documentation were created with AI
+assistance. No engine affiliation or endorsement is claimed.

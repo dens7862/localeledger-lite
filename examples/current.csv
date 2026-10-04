@@ -1,0 +1,9 @@
+key,en,fr,de
+MENU_START,Start game,Lancer le jeu,Spiel starten
+WELCOME,"Welcome, {player}!","Bienvenue, {player}!",Willkommen!
+GEMS,You have {count} gems,Vous avez {count} gemmes,Du hast {count} Edelsteine
+INVENTORY,Inventory,,Inventar
+HP,Health: %d / %d,Santé: %d,Gesundheit: %d / %d
+READY,Ready,Ready,Bereit
+SHOP_TITLE,Item shop,Boutique,Boutique
+QUEST_NEW,Find the hidden key,Trouvez la clé cachée,Finde den versteckten Schlüssel
